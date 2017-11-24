@@ -17,7 +17,7 @@ var svgmin = ("gulp-svgmin");
 
 
 /*работа с index.html и style.scss*/
-gulp.task("style", function () {
+gulp.task("style", function() {
     gulp.src("sass/style.scss")
         .pipe(plumber())
         .pipe(scss())
@@ -32,30 +32,45 @@ gulp.task("style", function () {
             })
         ]))
 
-        .pipe(gulp.dest("css"))
+    .pipe(gulp.dest("css"))
         .pipe(minify())
         .pipe(rename("style.min.css"))
         .pipe(gulp.dest("css"));
 });
 /*работа с изображениями*/
 
-    gulp.task("images", function () {
-        return gulp.src("images/**/*.{png,jpq,gif}")
-            .pipe(imagemin([
-                imagemin.optipng({optimizationLevel: 3}),
-                imagemin.jpegtran({progressive: true})
-            ]))
-            .pipe(gulp.dest("images"));
-    });
+gulp.task("images", function() {
+    return gulp.src("images/**/*.{png,jpq,gif}")
+        .pipe(imagemin([
+            imagemin.optipng({ optimizationLevel: 3 }),
+            imagemin.jpegtran({ progressive: true })
+        ]))
+        .pipe(gulp.dest("images"));
+});
 
-    /*работа с svg*/
+/*работа с svg*/
 
-    gulp.task("symbols", function () {
-        return gulp.src("images/icons/*.svg")
-            .pipe(svgmin())
-            .pipe(svgstore({
-                inlineSvg: true
-            }))
-            .pipe(rename("symbols.svg"))
-            .pipe(gulp.dest("images"));
-    });
+gulp.task("symbols", function() {
+    return gulp.src("images/icons/*.svg")
+        .pipe(svgmin())
+        .pipe(svgstore({
+            inlineSvg: true
+        }))
+        .pipe(rename("symbols.svg"))
+        .pipe(gulp.dest("images"));
+});
+
+gulp.task("default", ["build"]);
+
+gulp.task("clean", function() {
+    return del([paths.base.dist]);
+});
+
+gulp.task("build", function(callback) {
+    runSequence(
+        "clean", [],
+        "browserSync",
+        "watch",
+        callback
+    );
+});
