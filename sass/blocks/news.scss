@@ -1,0 +1,154 @@
+.news {
+  width: 100%;
+  background-color: #f8f5f2;
+  color: black;
+  border-bottom: 1px solid #e5ddd5;
+
+&__wrapper {
+  display: block;
+  padding-bottom: 30px;
+
+}
+  &__title {
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: center;
+    padding-top: 70px ;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-size: 30px;
+  }
+  &__items {
+
+    list-style: none;
+    padding: 0;
+    position: relative;
+    margin-bottom: 0;
+  & li {
+    border-bottom: 1px solid #e5ddd5;
+    display: none;
+    &:nth-child(-n+2){
+      display: block;
+    }
+  }
+  }
+  &__item {
+
+  }
+  &__date {
+    & b{
+      font-size: 30px;
+      line-height: 30px;
+      font-weight: bold;
+    }
+    position: absolute;
+    left: 20px;
+    margin-top: 10px;
+    display: flex;
+    line-height: 13px;
+    flex-direction: column;
+    align-items: center;
+    width: 45px;
+    min-height: 45px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: black;
+    color: #FFFFFF;
+    &::after {
+      content: "";
+      bottom:-39px;
+      margin-left: -39.5px;
+      position: absolute;
+      border: 27.5px solid transparent;
+      border-top: 12px solid black;
+    }
+  }
+  & p {
+
+    min-height: 82px;
+    padding-left: 90px;
+
+    padding-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .news {
+    &__wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: center;
+      flex-wrap: wrap;
+      margin-left: 65px;
+      margin-right: 65px;
+      padding-bottom: 20px;
+
+
+    }
+
+    &__title {
+      order: -2;
+      padding: 0;
+      margin-top: 85px;
+      margin-left: 70px;
+      font-size: 40px;
+    }
+
+    &__to-all {
+      order: -1;
+      width: 160px;
+      height: 25px;
+      margin-top: 85px;
+    }
+
+    &__items {
+      display: flex;
+      & li {
+        border: none;
+      }
+    }
+
+    &__item {
+      width: 50%;
+      position: relative;
+
+      & p {
+        padding-left: 70px;
+        padding-right: 20px;
+      }
+
+    }
+
+    &__date {
+      top: 20px;
+      left: 0;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .news {
+    &__wrapper {
+      margin-left: 120px;
+      margin-right: 120px;
+    }
+
+    &__item {
+      width: 33.3%;
+      &:last-child {
+        display: block;
+      }
+
+      & p {
+        width: 70%;
+      }
+    }
+  }
+
+}
